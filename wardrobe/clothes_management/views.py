@@ -30,11 +30,11 @@ def upload_clothes(request):
                     'status': '102',
                     'message': 'Username missing',
                 }
-            elif username != request.session.get('username'):
-                response = {
-                    'status': '103',
-                    'message': 'Not logged in',
-                }
+            #elif username != request.session.get('username'):
+            #    response = {
+            #        'status': '103',
+            #        'message': 'Not logged in',
+            #    }
             else:
                 clothes = body.get('clothes')
                 response = ClothesManager.save_clothes(clothes, username)
@@ -43,10 +43,11 @@ def upload_clothes(request):
             'status': '100',
             'message': 'Fail to upload',
         }
+    print(response)
     return JsonResponse(response)
     
 def get_clothes(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         body = get_body(request)
         if (body == None) or (not isinstance(body, dict)):
             response = {
@@ -55,16 +56,20 @@ def get_clothes(request):
             }
         else:
             owner = body.get('owner')
+            print(request.session.items())
+            print(request.COOKIES)
             if owner == None:
                 response = {
                     'status': '102',
                     'message': 'Missing owner\'s name',
                 }
-            elif owner != request.session.get('username'):
-                response = {
-                    'status': '103',
-                    'message': 'Not logged in',
-                }
+                '''
+                elif owner != request.session.get('username'):
+                    response = {
+                        'status': '103',
+                        'message': 'Not logged in',
+                    }
+                '''
             else:
                 #Pattern: filters
                 filters = body
@@ -76,4 +81,5 @@ def get_clothes(request):
             'status': '100',
             'message': 'Fail to get information on clothes.',
         }
+    print(response)
     return JsonResponse(response)

@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "b1bfd357-385c-455b-8e4a-3950f9ffcd0d",
+		"name": "Wardrobe",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://39.106.57.177:8000/history_management/get_history",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"David\",\n\t\"date\":\"2020/1/2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/history_management/get_history",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"history_management",
+						"get_history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/authentication/sign_in/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"David\",\n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/authentication/sign_in",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"authentication",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/history_management/set_history",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"David\",\r\n    \"date\":\"2020/1/2\",\r\n    \"data\":{\r\n        \"num\":1,\r\n        \"clothesID\":[\r\n            0\r\n        ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/history_management/set_history",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"history_management",
+						"set_history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/clothes_management/get_clothes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"owner\":\"David\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/clothes_management/get_clothes",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"clothes_management",
+						"get_clothes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/authentication/sign_out",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"David\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/authentication/sign_out",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"authentication",
+						"sign_out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/clothes_management/get_clothes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"owner\":\"David\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/clothes_management/get_clothes",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"clothes_management",
+						"get_clothes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/clothes_management/upload_clothes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"David\",\r\n    \"clothes\":{\r\n    \t\t\"owner\":\"David\",\r\n            \"usage_count\":0,\r\n            \"brand\":\"Jack Jones\",\r\n            \"category\":\"skirt\",\r\n            \"size\":\"M\",\r\n            \"color\":\"green\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/clothes_management/upload_clothes",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"clothes_management",
+						"upload_clothes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/authentication/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"David\",\n\t\"email\":\"12345@abc.com\",\n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/authentication/register",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"authentication",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://39.106.57.177:8000/authentication/sign_out",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"David\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://39.106.57.177:8000/authentication/sign_out",
+					"protocol": "http",
+					"host": [
+						"39",
+						"106",
+						"57",
+						"177"
+					],
+					"port": "8000",
+					"path": [
+						"authentication",
+						"sign_out"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

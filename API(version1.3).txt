@@ -1,0 +1,268 @@
+REST API
+
+server host:39.106.57.177
+server port:8000
+
+
+url: authentication/register
+method: POST
+parameter:
+request body:
+{
+    "username":<string>,
+    "email":<string>,
+    "password":<string>
+}
+response bodies:
+{
+    "status":"000",
+    "message":"Registered successfully"
+}
+{
+    "status":"100",
+    "message":"Fail to register"
+}
+{
+    "status":"102",
+    "message":"Missing user fields"
+}
+{
+    "status":"103",
+    "message":"User already exists"
+}
+
+
+url: authentication/sign_in
+method: POST
+parameter:
+request body:
+{
+    "username":<string>,
+    "password":<string>
+}
+response bodies:
+{
+    "status":"000",
+    "message":"Signed in successfully"
+}
+{
+    "status":"001",
+    "message":"Signed in already"
+}
+{
+    "status":"100",
+    "message":"Fail to log in"
+}
+{
+    "status":"101",
+    "message":"Ill-formed JSON request body"
+}
+{
+    "status":"102",
+    "message":"Missing username"
+}
+{
+    "status":"103",
+    "message":"User does not exist"
+}
+{
+    "status":"104",
+    "message":"Missing password"
+}
+{
+    "status":"105",
+    "message":"Wrong password"
+}
+
+
+url: authentication/sign_out
+method: POST
+parameter:
+request body:
+{
+    "username": <string>
+}
+response bodies:
+{
+    "status":"000",
+    "message":"Signed out successfully"
+}
+{
+    "status":"100",
+    "message":"Fail to log out"
+}
+{
+    "status":"101",
+    "message":"Ill-formed JSON request body"
+}
+{
+    "status":"102",
+    "message":"Not logged in"
+}
+
+
+url: clothes_management/upload_clothes
+method: POST
+parameter:
+request body:
+{
+    "username":<string>,
+    "clothes":{
+        "usage_count":<int>,//Undesired fields can be omitted.
+        "brand":<string>,
+        "category":<string>,
+        "size":<string>,
+        "color":<string>,
+        "owner":<string>//username
+        "image":<string>
+    }
+}
+
+response bodies:
+{
+    "status":"000",
+    "message":"Saved successfully",
+    "data":{
+        "num":<int>,
+        "saved_clothes":[
+            {
+                "id_":<int>,
+                "owner":<string>,
+                "usage_count":<int>,
+                "brand":<string>,
+                "category":<string>,
+                "size":<string>,
+                "owner":<string>,
+                "image":<string>
+                
+            },
+            ...
+        ]
+        "unsaved_clothes":[
+            {
+                "id_":<int>,
+                "owner":<string>,
+                "usage_count":<int>,
+                "brand":<string>,
+                "category":<string>,
+                "size":<string>,
+                "owner":<string>,
+                "image":<string>
+            },
+            ...
+        ]
+    }
+}
+{
+    "status":"100",
+    "message":"Fail to upload"
+}
+{
+    "status":"102",
+    "message":"Username missing"
+}
+{
+    "status":"103",
+    "message":"Not logged in"
+}
+{
+    "status":"104",
+    "message":"Invalid clothes"
+}
+
+
+url: clothes_management/get_clothes
+method: GET
+parameter:
+request body:
+{
+    "owner":<string>,//Owner is mandatory. Other undesired fields can be omitted.
+    "usage_count":<int>,
+    "brand":<string>,
+    "category":<string>,
+    "size":<string>,
+    "color":<string>
+}
+response bodies:
+{
+    "status":"000",
+    "message":"Query made successfully",
+    "data":{
+        "num":<int>,
+        "clothes":[
+            {
+                "id_":<int>,
+                "owner":<string>,
+                "usage_count":<int>,
+                "brand":<string>,
+                "category":<string>,
+                "size":<string>,
+                "owner":<string>,
+                "image":<string>
+            },
+            ...
+        ]
+    }
+}
+{
+    "status":"100",
+    "message":"Fail to upload"
+}
+{
+    "status":"101",
+    "message":"Ill-formed JSON body"
+}
+{
+    "status":"102",
+    "message":"Username missing"
+}
+{
+    "status":"103",
+    "message":"Not logged in"
+}
+
+
+
+
+url: history_management/get_history
+method: GET
+parameter:
+request body:
+{
+    "username":<string>,
+    "date":<string>//2019/12/25
+}
+response bodies:
+{
+    "status":"000",
+    "message":"Get history successfully",
+    "data":{
+        "num":<int>,
+        "clothesID":[
+            <int>,
+            ...
+        ]
+    }
+}
+
+url history_management/set_history
+method: POST
+parameter:
+request body:
+{
+    "username":<string>,
+    "date":<string>,
+    "data":{
+        "num":<int>,
+        "clothesID":[
+            <int>,
+            <int>
+            ...
+        ]
+    }
+}
+response bodies:
+{
+    "status":"000",
+    "message":"Set history successfully",
+}

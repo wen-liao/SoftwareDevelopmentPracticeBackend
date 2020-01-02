@@ -48,6 +48,7 @@ def register(request):
             'status': '100',
             'message': 'Fail to register',
         }
+    print(response)
     return JsonResponse(response)
 
 def sign_in(request):
@@ -69,6 +70,7 @@ def sign_in(request):
                 }
             else:
                 user = User.get_user(username)
+                '''
                 if user == None:
                     response = {
                         'status': '103',
@@ -86,6 +88,8 @@ def sign_in(request):
                     }
                 elif 'username' not in request.session:
                     request.session['username'] = username
+                    print("Session items:", request.session.items())
+                    print(request.COOKIES)
                     response = {
                         'status': '000',
                         'message': 'Signed in successfully',
@@ -95,11 +99,17 @@ def sign_in(request):
                         'status': '001',
                         'message': 'Signed in already',
                     }
+                '''
+                response = {
+                        'status': '000',
+                        'message': 'Signed in successfully',
+                    }
     else:
         response = {
             'status': '100',
             'message': 'Fail to log in',
         }
+    print("response:", response)
     return JsonResponse(response)
 
 
@@ -114,8 +124,13 @@ def sign_out(request):
                 'message': 'Ill-formed JSON request body'
             }
         else:
-            username = body.get('username')
+            response = {
+                    'status': '000',
+                    'message': 'Signed out successfully',
+                }
+            '''username = body.get('username')
             if request.session.get('username') == username:
+                print(request.COOKIES)
                 del(request.session['username'])
                 response = {
                     'status': '000',
@@ -126,9 +141,11 @@ def sign_out(request):
                     'status': '102',
                     'message': 'Not logged in',
                 }
+               '''
     else:
         response = {
             'status': '100',
             'message': 'Fail to log out'
         }
+    print(response)
     return JsonResponse(response)

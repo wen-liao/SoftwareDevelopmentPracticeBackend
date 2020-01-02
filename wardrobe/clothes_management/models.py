@@ -1,6 +1,7 @@
 from django.db import models
 from mongoengine import *
 from authentication.models import User
+from io import BytesIO
 
 class Cloth(DynamicDocument):
     id_ = IntField()
@@ -10,20 +11,25 @@ class Cloth(DynamicDocument):
     category = StringField(max_length=50)
     size = StringField(max_length=50)
     image = FileField()
+    color = StringField(max_length=50)
     
 
 class ClothesManager:
     
     #TODO: distributed incremental id
-    id_ = -1
-    
     @classmethod
     def get_incremental_id(cls):
-        cls.id_ += 1
-        return cls.id_
+        return len(Cloth.objects.all())
+    
+    @classmethod
+    def get_cloth_by_id(cls,id_):
+        clothes = Cloth.objects.filter(id_=id_)
+        print(len(clothes))
+        return clothes[0] if len(clothes) > 0  else None
     
     @classmethod
     def cloth2json(cls, cloth):
+        imageFile = cloth.image.read()
         return {
             'id_': cloth.id_,
             'owner': cloth.owner.username,
@@ -31,12 +37,16 @@ class ClothesManager:
             'brand': cloth.brand,
             'category': cloth.category,
             'size': cloth.size,
-            'image':byte.decode(cloth.image.read(),encoding='utf-8'),
+            'color':cloth.color,
+            'image':bytes.decode(imageFile,encoding='utf-8') if imageFile != None else None
         }
     
     @classmethod
     def save_clothes(cls, clothes, username):
-        if not isinstance(clothes, list):
+        print("username:", username)
+        print("clothes:", clothes)
+        print(type(clothes))
+        if not isinstance(clothes, dict):
             response = {
                 'status': '104',
                 'message': 'Invalid clothes',
@@ -46,6 +56,7 @@ class ClothesManager:
             #2. count how many clothes are successfully saved
             #3. respond with the information of successfully saved data
             owner = User.get_user(username)
+            clothes = [clothes]
             saved_clothes = []
             unsaved_clothes = []
             for cloth in clothes:
@@ -67,7 +78,8 @@ class ClothesManager:
                         image_file = BytesIO(bytes(cloth['image'], encoding='utf-8'))
                         cloth_.image.put(image_file)
                     cloth_.id_ = ClothesManager.get_incremental_id()
-                    cloth_.save()
+                    print("save status:", cloth_.save())
+                    print("cloth:", cloth_)
                     saved_clothes.append(ClothesManager.cloth2json(cloth_))
                 else:
                     unsaved_clothes.append(cloth)
