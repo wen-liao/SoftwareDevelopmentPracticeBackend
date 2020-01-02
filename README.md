@@ -1,8 +1,10 @@
 # SoftwareDevelopmentPracticeBackend
 Backend Part of the team project for Software Development Practice (COMP130112)
 
-## Default User
+## REST API
 
-username: David
-password: 123456
-email: 123456@abc.com
+见API(version *.*).txt等文件。
+
+## Functional Test
+
+见Wardrobe.postman_collection.json文件。
